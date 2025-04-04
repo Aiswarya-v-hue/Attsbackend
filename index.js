@@ -1,14 +1,20 @@
 require('./Database/Dbconfig')
 const express = require('express');
 const app=express();
-const port=process.env.PORT||5000;
+const port=process.env.PORT||10000;
 const cors = require('cors')
 const path = require('path')
-app.use(cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],  
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true
-}));
+
+
+const corsOptions = {
+    origin: "https://eloquent-shortbread-05525d.netlify.app", // Replace with your actual Netlify URL
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true, // Allow cookies if needed
+    allowedHeaders: "Content-Type,Authorization"
+  };
+  app.use(cors(corsOptions));
+
+
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
